@@ -11,7 +11,7 @@ const Pulsar = require('pulsar-client');
   await client.subscribe({
     topic: 'my-topic', // TODO: Get a real topic name
     subscription: 'my-subscription', // TODO: Give this a name
-    subscriptionType: 'Exclusive', // TODO: is this correct?
+    subscriptionType: 'Shared',
     listener: (msg, msgConsumer) => {
       console.log(msg.getData().toString());
       msgConsumer.acknowledge(msg);
