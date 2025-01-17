@@ -24,18 +24,22 @@ const cognitoIdentityClient = new CognitoIdentityClient({ region: env.AWS_REGION
 
   const { token } = await tokenCredential.getToken(env.SCOPE);
 
-  const client = new Pulsar.Client({
-    authentication: new Pulsar.AuthenticationToken({ token: token }),
-    serviceUrl: env.SERVICE_URL,
-  });
+  try {
+    const client = new Pulsar.Client({
+      authentication: new Pulsar.AuthenticationToken({ token: token }),
+      serviceUrl: env.SERVICE_URL,
+    });
 
-  await client.subscribe({
-    topic: env.TOPIC,
-    subscription: env.SUBSCRIPTION,
-    subscriptionType: 'Shared',
-    listener: (msg, msgConsumer) => {
-      console.log(msg.getData().toString());
-      msgConsumer.acknowledge(msg);
-    },
-  });
+    await client.subscribe({
+      topic: env.TOPIC,
+      subscription: env.SUBSCRIPTION,
+      subscriptionType: 'Shared',
+      listener: (msg, msgConsumer) => {
+        console.log(msg.getData().toString());
+        msgConsumer.acknowledge(msg);
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 })();
