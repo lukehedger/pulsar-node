@@ -1,0 +1,14 @@
+{
+  "name": "ecs-pulsar-node",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity": "3.726.0",
+    "@azure/identity": "4.5.0",
+    "pulsar-client": "1.12.0"
+  }
+}
