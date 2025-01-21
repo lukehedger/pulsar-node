@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:22-alpine
+FROM node:23-bullseye
 
 # Set working directory in the container
 WORKDIR /usr/src/app
@@ -11,8 +11,7 @@ COPY package*.json ./
 
 # Install dependencies
 # Use ci instead of install for more reliable builds
-# RUN npm ci --only=production
-RUN npm i
+RUN npm ci --only=production
 
 # Copy the rest of the application code
 COPY . .
@@ -20,9 +19,6 @@ COPY . .
 # Set environment variables
 # TODO: Set the correct env vars
 ENV NODE_ENV=production
-
-# TODO: What port does the EIR run on? Is this needed?
-EXPOSE 3000
 
 # Define the command to run your app
 CMD [ "node", "index.js" ]
