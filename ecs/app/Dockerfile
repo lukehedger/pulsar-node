@@ -18,7 +18,7 @@ COPY . .
 
 # Set environment variables
 # TODO: Set the correct env vars
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 
 # Define the command to run your app
 CMD [ "node", "index.js" ]
